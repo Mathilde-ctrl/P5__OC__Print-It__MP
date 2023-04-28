@@ -17,4 +17,18 @@ const slides = [
 	}
 ]
 
+// Evenement d'écoute du Clique : 
+
+const leftArrow = document.querySelector('.arrow_left');
+const rightArrow = document.querySelector('.arrow_right');
+
+leftArrow.addEventListener('click', () => {
+  // code pour effectuer une tâche ici
+	console.log("flèche gauche fonctionne"); // s'affiche dans devtool : console 
+});
+
+rightArrow.addEventListener('click', () => {
+  // code pour effectuer une tâche ici 
+	alert("flèche droite fonctionne"); // s'affiche dans une boite d'alerte
+});
 
