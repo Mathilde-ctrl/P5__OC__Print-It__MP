@@ -1,60 +1,101 @@
+
 const slides = [
 	{
-		"image":"slide1.jpg",
+		"image":"./assets/images/slideshow/slide1.jpg",
 		"tagLine":"Impressions tous formats <span>en boutique et en ligne</span>"
 	},
 	{
-		"image":"slide2.jpg",
+		"image":"./assets/images/slideshow/slide2.jpg",
 		"tagLine":"Tirages haute définition grand format <span>pour vos bureaux et events</span>"
 	},
 	{
-		"image":"slide3.jpg",
+		"image":"./assets/images/slideshow/slide3.jpg",
 		"tagLine":"Grand choix de couleurs <span>de CMJN aux pantones</span>"
 	},
 	{
-		"image":"slide4.png",
+		"image":"./assets/images/slideshow/slide4.png",
 		"tagLine":"Autocollants <span>avec découpe laser sur mesure</span>"
 	}
-]
-//-------------------------------------------------------------------------
-// Evenement d'écoute du Clique : 
-
+];
+/*
 const leftArrow = document.querySelector('.arrow_left');
 const rightArrow = document.querySelector('.arrow_right');
 
 leftArrow.addEventListener('click', () => {
-  // changeSlide(-1);
-	console.log("flèche gauche fonctionne"); // s'affiche dans devtool : console 
+  changeSlide(-1);
 });
 
 rightArrow.addEventListener('click', () => {
-  // changeSlide(1);
-	alert("flèche droite fonctionne"); // s'affiche dans une boite d'alerte
+  changeSlide(1);
 });
 
-//-----------------------------------------------------------------------
-// compter les images du tableau slides pour afficher 1 point par image
+const totalSlides = slides.length;
 
-const numberOfDot = slides.length; 
-//calcul le nombre total images
+const dotsContainer = document.querySelector('.dot-container');
 
-const dotsContainer = document.querySelector('.dots'); 
-// selection le conteneur dans HTML
-
-for (let i = 0; i < numberOfDot; i++ ){
+for (let i = 0; i < totalSlides; i++ ){
 	const dot = document.createElement('span');
-	//creer un span pour chaque point
 
 	dot.classList.add('dot');
-	//Ajoute une class dot aux spans
-
 	dotsContainer.appendChild(dot);
-	//Ajoute span a dotsContainer. (ajoute les points sur HTML)
 }
 
-//-----------------------------------------------------------------------
-//Changer class points quand image visible
+let currentSlideIndex = 0;
+const dots = document.querySelectorAll('.dot');
+dots[currentSlideIndex].classList.add('.dot_selected');
 
-let currentSlideIndex = 0; 
-// créer une variable pour savoir l'index visible
+const image = document.querySelector('.banner-img');
+const tagline = document.querySelector('#tagline');
 
+function changeSlide(direction) {
+  currentSlideIndex += direction;
+  if (currentSlideIndex < 0) {
+    currentSlideIndex = totalSlides - 1;
+	} 
+		else if (currentSlideIndex >= totalSlides) {
+    	currentSlideIndex = 0;
+  	}
+  image.src = slides[currentSlideIndex].image;
+  tagline.innerHTML = slides[currentSlideIndex].tagLine;
+}
+*/
+const leftArrow = document.querySelector('.arrow_left');
+const rightArrow = document.querySelector('.arrow_right');
+
+leftArrow.addEventListener('click', () => {
+  changeSlide(-1);
+});
+
+rightArrow.addEventListener('click', () => {
+  changeSlide(1);
+});
+
+const totalSlides = slides.length;
+
+const dotsContainer = document.querySelector('.dot-container');
+
+for (let i = 0; i < totalSlides; i++ ){
+  const dot = document.createElement('span');
+
+  dot.classList.add('dot');
+  dotsContainer.appendChild(dot);
+}
+
+let currentSlideIndex = 0;
+
+const dots = document.querySelectorAll('.dot');
+const image = document.querySelector('.banner-img');
+const tagline = document.querySelector('#tagline');
+
+function changeSlide(direction) {
+  dots[currentSlideIndex].classList.remove('dot_selected'); 
+  currentSlideIndex += direction;
+  if (currentSlideIndex < 0) {
+    currentSlideIndex = totalSlides - 1;
+  } else if (currentSlideIndex >= totalSlides) {
+    currentSlideIndex = 0;
+  }
+  image.src = slides[currentSlideIndex].image;
+  tagline.innerHTML = slides[currentSlideIndex].tagLine;
+  dots[currentSlideIndex].classList.add('dot_selected'); 
+}
