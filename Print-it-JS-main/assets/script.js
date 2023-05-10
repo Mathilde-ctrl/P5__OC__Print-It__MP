@@ -49,6 +49,10 @@ for (let i = 0; i < totalSlides; i++ ){
   dot.classList.add('dot');
 	//adds the class dot to the html element reprented by the dot variable
 
+	if (i === 0) {
+    dot.classList.add('dot_selected');
+  }
+	// add the "dot_selected" class to the first dot element when the page is loaded,
   dotsContainer.appendChild(dot);
 	//appendChild() is used to add dot as a child of the dotsContainer. 
 	//That will create a new dot element for each slide and add it to the dotsContainer.
@@ -94,3 +98,50 @@ function changeSlide(direction) {
   dots[currentSlideIndex].classList.add('dot_selected'); 
 	//adds the class to the new current slide with currentSlideIndex. 
 }
+
+/*
+const leftArrow = document.querySelector('.arrow_left');
+const rightArrow = document.querySelector('.arrow_right');
+
+leftArrow.addEventListener('click', () => {
+  changeSlide(-1);
+});
+
+rightArrow.addEventListener('click', () => {
+  changeSlide(1);
+});
+
+const totalSlides = slides.length;
+
+const dotsContainer = document.querySelector('.dot-container');
+
+for (let i = 0; i < totalSlides; i++ ){
+  const dot = document.createElement('span');
+  dot.classList.add('dot');
+	if (i === 0) {
+    dot.classList.add('dot_selected');
+  }
+  dotsContainer.appendChild(dot);
+}
+
+let currentSlideIndex = 0;
+const dots = document.querySelectorAll('.dot');
+const image = document.querySelector('.banner-img');
+const tagline = document.querySelector('#tagline');
+
+function changeSlide(direction) {
+  dots[currentSlideIndex].classList.remove('dot_selected');
+  currentSlideIndex += direction;
+
+  if (currentSlideIndex < 0) {
+    currentSlideIndex = totalSlides - 1;
+  } else if (currentSlideIndex >= totalSlides) {
+    currentSlideIndex = 0;
+  }
+
+  image.src = slides[currentSlideIndex].image;
+  tagline.innerHTML = slides[currentSlideIndex].tagLine;
+  dots[currentSlideIndex].classList.add('dot_selected');
+}
+
+*/
